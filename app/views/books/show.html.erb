@@ -27,7 +27,19 @@
 				<td><%= link_to "Destroy", book_path(@book), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_book_#{@book.id}" %>
 				</td>
 				<% else %>
-				<td></td>
+				<td>
+				<% if @book.favorited_by?(current_user) %>
+					<%= link_to book_favorites_path(@book), method: :delete do %>
+					<i class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;" ></i>
+					<%= @book.favorites.count %>
+					<% end %>
+					<% else %>
+					<%= link_to book_favorites_path(@book), method: :post do %>
+					<i class="glyphicon glyphicon-heart-empty" aria-hidden="true" ></i>
+					<%= @book.favorites.count %>
+					<% end %>
+					<% end %>
+				</td>
 				<td>コメント数：<%= @book.post_comments.count %></td>
 				<% end %>
 			</tr>
