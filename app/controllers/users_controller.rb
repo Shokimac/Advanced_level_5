@@ -25,6 +25,20 @@ class UsersController < ApplicationController
     end
   end
 
+  #一覧ページ用のアクション
+  def following
+    @user = User.find(params[:id])
+    @users = @user.followings.page(params[:page]).per(5)
+    render 'following'
+  end
+
+    #一覧ページ用のアクション
+  def followers
+    @user = User.find(params[:id])
+    @users = @user.followers.page(params[:page]).per(5)
+    render 'followers'
+  end
+
   private
   def user_params
     params.require(:user).permit(:name, :introduction, :profile_image)
