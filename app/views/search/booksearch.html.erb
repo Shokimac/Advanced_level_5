@@ -1,0 +1,16 @@
+<h1>Book search</h1>
+
+<table class="table">
+<tr>
+<th>Title</th>
+</tr>
+<tbody>
+<% @books.each do |book| %>
+<tr>
+<td>
+<%= book.title %>
+</td>
+</tr>
+<% end %>
+</tbody>
+</table>

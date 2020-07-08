@@ -12,8 +12,9 @@ Rails.application.routes.draw do
   end
   resources :relationships, only: [:create, :destroy]
   
+  get 'usersearch' => 'search#usersearch'
+  get 'booksearch' => 'search#booksearch'
   get 'search' => 'search#search'
-
   root 'home#top'
   get 'home/about'
 

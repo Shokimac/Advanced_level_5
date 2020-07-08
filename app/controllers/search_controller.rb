@@ -1,9 +1,15 @@
 class SearchController < ApplicationController
+
     def search
-        if params[:name].present?
-            @users = User.where('name LIKE ?', "%#{params[:name]}%")
+        @range = params[:range]
+        search = params[:search]
+        @word = params[:word]
+        
+        if @range == '1'
+            @user = User.search(search,@word)
         else
-            @users = User.none
+            @book = Book.search(search,@word)
         end
     end
+
 end
